@@ -34,8 +34,7 @@ const translations = {
 };
 
 export function getText(key, ...args) {
-  // const rawLang = navigator.language || 'en';
-  const rawLang = 'en';
+  const rawLang = navigator.language || 'en';
   const langCode = rawLang.split('-')[0];
 
   let text = translations[langCode]?.[key]
