@@ -1,0 +1,153 @@
+.wf-context-menu-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: "rgba(0, 0, 0, 0.1)";
+  z-index: 10000;
+  cursor: default;
+}
+
+.wf-context-menu {
+  position: absolute;
+  background: var(--comfy-menu-bg, #2b2b2b);
+  color: var(--fg-color, #eee);
+  border: 1px solid var(--border-color, #444);
+  border-radius: 6px;
+  padding: 4px 0;
+  z-index: 10001;
+  min-width: 180px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
+  font-family: var(--font-family, sans-serif);
+  font-size: 13px;
+  backdrop-filter: blur(4px);
+}
+
+.wf-menu-item {
+  padding: 8px 16px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  transition: background 0.15s;
+  color: var(--p-tree-node-color);
+  text-decoration: none;
+}
+
+.wf-menu-item:hover {
+  background: var(--comfy-input-bg, #3a3a3a);
+  color: #fff;
+  cursor: pointer;
+}
+
+.wf-menu-item i {
+  width: 16px;
+  text-align: center;
+  opacity: 0.8;
+}
+
+.wf-menu-item.danger {
+  color: #ff6b6b;
+}
+.wf-menu-item.danger:hover {
+  background: #5a2a2a;
+  color: #ff8888;
+}
+
+.wf-menu-divider {
+  height: 1px;
+  background: var(--border-color, #444);
+  margin: 4px 0;
+}
+
+.wf-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(2px);
+  z-index: 10000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.wf-modal-box {
+  background: var(--comfy-menu-bg, #2b2b2b);
+  color: var(--fg-color, #eee);
+  padding: 24px;
+  border-radius: 8px;
+  min-width: 320px;
+  border: 1px solid var(--border-color, #555);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  z-index: 100;
+}
+
+.wf-modal-box h3 {
+  margin: 0 0 16px 0;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--p-tree-node-color);
+}
+
+.wf-modal-box p {
+  color: var(--p-tree-node-color);
+}
+
+.wf-modal-box input {
+  width: 100%;
+  padding: 12px;
+  margin: 12px 0px;
+  background: var(--bg-color, #1a1a1a);
+  border: 1px solid var(--border-color, #444);
+  color: var(--fg-color, #eee);
+  border-radius: 4px;
+  font-size: 14px;
+  box-sizing: border-box;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.wf-modal-box input:focus {
+  border-color: var(--selected-bg, #236699);
+}
+
+.wf-modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.wf-btn {
+  padding: 8px 16px;
+  border-radius: 4px;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  border: none;
+  transition: opacity 0.2s;
+}
+
+.wf-btn:hover {
+  opacity: 0.9;
+}
+
+.wf-btn-cancel {
+  background: #444;
+  color: #ddd;
+  margin-right: 12px;
+}
+
+.wf-btn-confirm {
+  background: var(--selected-bg, #236699);
+  color: #fff;
+}
+
+.wf-btn-danger {
+  background: #d9534f;
+  color: #fff;
+}
