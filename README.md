@@ -24,7 +24,7 @@
 
     ```
     cd ComfyUI/custom_nodes
-    git clone https://github.com/necatail/ComfyUI-Workflow-Folders.git
+    git clone https://github.com/loFei/ComfyUI-Workflow-Folders.git
     ```
 
 <h2 id="english">English</h2>
@@ -45,7 +45,7 @@
 
     ```
     cd ComfyUI/custom_nodes
-    git clone https://github.com/necatail/ComfyUI-Workflow-Folders.git
+    git clone https://github.com/loFei/ComfyUI-Workflow-Folders.git
 
     ```
 
