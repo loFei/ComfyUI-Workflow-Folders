@@ -1,0 +1,15 @@
+# pyproject.toml
+[project]
+name = "necatail"
+description = "ComfyUI Workflow Folders is designed to enhance the native ComfyUI workflow panel by providing directory management and context menus, enabling quick workflow classification within ComfyUI."
+version = "1.1.0"
+license = { file = "LICENSE" }
+dependencies  = []
+
+[project.urls]
+Repository = "https://github.com/loFei/ComfyUI-Workflow-Folders"
+
+[tool.comfy]
+PublisherId = "necatail"
+DisplayName = "ComfyUI-Workflow-Folders"
+Icon = "https://github.com/loFei/ComfyUI-Workflow-Folders/blob/main/icon.png" # SVG, PNG, JPG or GIF (MAX. 800x400px)
