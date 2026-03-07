@@ -1,8 +1,8 @@
 # pyproject.toml
 [project]
-name = "necatail"
+name = "comfyui-workflow-folders"
 description = "ComfyUI Workflow Folders is designed to enhance the native ComfyUI workflow panel by providing directory management and context menus, enabling quick workflow classification within ComfyUI."
-version = "1.1.1"
+version = "1.1.2"
 license = { file = "LICENSE" }
 dependencies  = []
 
