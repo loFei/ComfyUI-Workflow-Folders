@@ -2,7 +2,7 @@
 [project]
 name = "necatail"
 description = "ComfyUI Workflow Folders is designed to enhance the native ComfyUI workflow panel by providing directory management and context menus, enabling quick workflow classification within ComfyUI."
-version = "1.1.0"
+version = "1.1.1"
 license = { file = "LICENSE" }
 dependencies  = []
 
