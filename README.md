@@ -10,8 +10,7 @@
 
 ### ComfyUI Workflow Folders
 
-    ComfyUI Workflow Folders 旨在增强 ComfyUI 原生的工作流面板，提供目录管理功能和右键菜单，
-    在 ComfyUI 中快速完成工作流分类管理。
+    ComfyUI Workflow Folders 旨在增强 ComfyUI 原生的工作流面板，提供目录管理功能和右键菜单，在 ComfyUI 中快速完成工作流分类管理。
 
 ### ✨核心功能
 
@@ -35,21 +34,18 @@
 
 ### ComfyUI Workflow Folders
 
-    ComfyUI Workflow Folders is designed to enhance the native ComfyUI workflow panel by providing directory
-    management and context menus, enabling quick workflow classification within ComfyUI.
+    ComfyUI Workflow Folders is designed to enhance the native ComfyUI workflow panel by providing directory management and context menus, enabling quick workflow classification within ComfyUI.
 
 ### ✨Core Features
     📂 Add a new directory via the context menu when right-clicking on an empty area of the workflow panel.
-    📂 Perform the following actions precisely on specified directories to achieve flexible workflow
-    classification and organization:
+    📂 Perform the following actions precisely on specified directories to achieve flexible workflow classification and organization:
         Add Folder
         Delete
         Rename
         Copy
 
 ### ⚠️Usage Notes
-    ⚠️ Important Notice: This project operates solely on the directory structure and does not override
-    the native workflow file context menu.
+    ⚠️ Important Notice: This project operates solely on the directory structure and does not override the native workflow file context menu.
 
 ### Installation
 
