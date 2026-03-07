@@ -12,4 +12,4 @@ Repository = "https://github.com/loFei/ComfyUI-Workflow-Folders"
 [tool.comfy]
 PublisherId = "necatail"
 DisplayName = "ComfyUI-Workflow-Folders"
-Icon = "https://github.com/loFei/ComfyUI-Workflow-Folders/blob/main/icon.png" # SVG, PNG, JPG or GIF (MAX. 800x400px)
+Icon = "https://github.com/loFei/ComfyUI-Workflow-Folders/blob/main/icon.png?raw=true"
