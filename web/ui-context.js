@@ -72,6 +72,10 @@ export class ContextMenu {
             { type: 'delete', label: `🗑️ ${getText('delete')}`, danger: true }
         ];
 
+        if (node == undefined) {
+            return [common[0]];
+        }
+
         if (node.type === 'file') {
             return common;
         }
