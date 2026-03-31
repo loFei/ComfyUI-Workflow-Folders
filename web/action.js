@@ -31,6 +31,21 @@ export async function handleAction(actionType, nodeData, modal) {
         await api.saveEmptyWorkflow(`${path}/${newName}`, simpleGenerateUUID());
         refreshTree();
       }
+    } else if (actionType === 'new_workflow') {
+      const newName = await modal.prompt(getText('new_workflow_name'), 'workflow.json');
+      if (newName) {
+        const fileName = newName.endsWith('.json') ? newName : newName + '.json';
+        await api.saveEmptyWorkflow(path, simpleGenerateUUID(), fileName);
+        refreshTree();
+      }
+    } else if (actionType === 'move_to') {
+      const folders = await api.listFolders();
+      const parentPath = nodeData.parentPath || '';
+      const destFolder = await modal.selectFolder(getText('select_destination'), folders, type === 'folder' ? path : null);
+      if (destFolder !== null && destFolder !== parentPath) {
+        await api.move(path, destFolder);
+        refreshTree();
+      }
     } else if (actionType === 'rename') {
       const newName = await modal.prompt(getText('rename_to'), name);
       if (newName && newName !== name) {

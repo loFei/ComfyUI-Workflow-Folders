@@ -8,6 +8,8 @@ import {
     queryTreeRootElement
 } from './query.js';
 import { handleAction } from './action.js';
+import { api } from './api.js';
+import { triggerWorkflowRefresh } from './trigger.js';
 
 const getBaseUrl = () => {
     const url = import.meta.url;
@@ -65,13 +67,70 @@ export function initWorkflowFolders(app) {
                 const nodeData = queryNodeData(node);
                 console.log("[WF] Data:", nodeData);
 
-                if (nodeData.type == 'folder') {
+                if (nodeData && (nodeData.type === 'folder' || nodeData.type === 'file')) {
                     showContextMenu(e, nodeData);
                     e.preventDefault();
                     e.stopPropagation();
                 }
 
             }, true);
+
+            // Drag & Drop
+            const contentEl = treeNode.querySelector('.p-tree-node-content');
+            if (contentEl) {
+                contentEl.setAttribute('draggable', 'true');
+
+                contentEl.addEventListener('dragstart', (e) => {
+                    const node = queryClosestTreeNodeElement(e.target);
+                    const nodeData = queryNodeData(node);
+                    if (!nodeData) return;
+                    e.dataTransfer.setData('application/wf-path', nodeData.path);
+                    e.dataTransfer.setData('application/wf-type', nodeData.type);
+                    e.dataTransfer.setData('application/wf-parent', nodeData.parentPath || '');
+                    e.dataTransfer.effectAllowed = 'move';
+                    treeNode.classList.add('wf-dragging');
+                });
+
+                contentEl.addEventListener('dragend', () => {
+                    treeNode.classList.remove('wf-dragging');
+                    document.querySelectorAll('.wf-drag-over').forEach(el => el.classList.remove('wf-drag-over'));
+                });
+
+                contentEl.addEventListener('dragover', (e) => {
+                    const node = queryClosestTreeNodeElement(e.target);
+                    const targetData = queryNodeData(node);
+                    if (targetData && targetData.type === 'folder') {
+                        e.preventDefault();
+                        e.dataTransfer.dropEffect = 'move';
+                        contentEl.classList.add('wf-drag-over');
+                    }
+                });
+
+                contentEl.addEventListener('dragleave', () => {
+                    contentEl.classList.remove('wf-drag-over');
+                });
+
+                contentEl.addEventListener('drop', async (e) => {
+                    e.preventDefault();
+                    contentEl.classList.remove('wf-drag-over');
+                    const srcPath = e.dataTransfer.getData('application/wf-path');
+                    const srcParent = e.dataTransfer.getData('application/wf-parent');
+                    const node = queryClosestTreeNodeElement(e.target);
+                    const targetData = queryNodeData(node);
+
+                    if (!srcPath || !targetData || targetData.type !== 'folder') return;
+                    if (targetData.path === srcParent) return; // already in this folder
+                    if (srcPath === targetData.path) return; // dropping on itself
+
+                    try {
+                        await api.move(srcPath, targetData.path);
+                        triggerWorkflowRefresh();
+                    } catch (err) {
+                        alert(err.message);
+                    }
+                });
+            }
+
             attachCount++;
         });
 

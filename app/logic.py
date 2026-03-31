@@ -134,6 +134,63 @@ def delete_item(path):
     return True
 
 
+def move_item(src_path, dest_folder):
+    if not validate_path(src_path):
+        raise ValueError("Invalid source path")
+    if not validate_path(dest_folder):
+        raise ValueError("Invalid destination path")
+
+    src_full = os.path.join(WORKFLOW_ROOT, normalize_path(src_path))
+    if not os.path.exists(src_full):
+        raise FileNotFoundError("Source not found")
+
+    dest_dir = os.path.join(WORKFLOW_ROOT, normalize_path(dest_folder)) if dest_folder else WORKFLOW_ROOT
+    if not os.path.isdir(dest_dir):
+        raise FileNotFoundError("Destination folder not found")
+
+    item_name = os.path.basename(src_full)
+    dest_full = os.path.join(dest_dir, item_name)
+
+    dest_rel = get_relative_path(dest_full)
+    if not validate_path(dest_rel):
+        raise ValueError("Invalid destination path")
+
+    if os.path.abspath(src_full) == os.path.abspath(dest_full):
+        raise ValueError("Source and destination are the same")
+
+    if os.path.exists(dest_full):
+        raise ValueError(f"'{item_name}' already exists in destination folder")
+
+    if os.path.isdir(src_full) and os.path.abspath(dest_dir).startswith(os.path.abspath(src_full) + os.sep):
+        raise ValueError("Cannot move a folder into itself")
+
+    shutil.move(str(src_full), str(dest_full))
+    return True
+
+
+def list_folders(current_path=None, relative_base=""):
+    if current_path is None:
+        current_path = WORKFLOW_ROOT
+    result = []
+    try:
+        entries = sorted(os.listdir(current_path))
+    except (FileNotFoundError, PermissionError):
+        return result
+
+    for entry in entries:
+        full_path = os.path.join(current_path, entry)
+        if os.path.isdir(full_path):
+            rel_entry = os.path.join(relative_base, entry) if relative_base else entry
+            rel_entry = get_relative_path(os.path.join(WORKFLOW_ROOT, rel_entry))
+            children = list_folders(full_path, rel_entry)
+            result.append({
+                "name": entry,
+                "path": rel_entry,
+                "children": children,
+            })
+    return result
+
+
 def load_workflow_content(path):
     if not validate_path(path):
         raise ValueError("Invalid path")
