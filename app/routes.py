@@ -63,6 +63,29 @@ async def delete_handler(request):
     except Exception as e:
         return web.json_response({"error": str(e)}, status=500)
 
+async def move_handler(request):
+    """POST /wf/workflow-folders/move"""
+    try:
+        data = await request.json()
+        logic.move_item(data.get("src_path"), data.get("dest_folder", ""))
+        return web.json_response({"success": True})
+    except FileNotFoundError as e:
+        return web.json_response({"error": str(e)}, status=404)
+    except ValueError as e:
+        return web.json_response({"error": str(e)}, status=400)
+    except Exception as e:
+        return web.json_response({"error": str(e)}, status=500)
+
+
+async def list_folders_handler(request):
+    """GET /wf/workflow-folders/folders"""
+    try:
+        folders = logic.list_folders()
+        return web.json_response({"success": True, "folders": folders})
+    except Exception as e:
+        return web.json_response({"error": str(e)}, status=500)
+
+
 def register_routes():
     prompt_server = server.PromptServer.instance
     app = prompt_server.app
@@ -71,5 +94,7 @@ def register_routes():
     app.router.add_post("/wf/workflow-folders/rename", rename_handler)
     app.router.add_post("/wf/workflow-folders/copy", copy_handler)
     app.router.add_post("/wf/workflow-folders/delete", delete_handler)
+    app.router.add_post("/wf/workflow-folders/move", move_handler)
+    app.router.add_get("/wf/workflow-folders/folders", list_folders_handler)
 
     print("[Workflow Folders] Routes registered.")

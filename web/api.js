@@ -45,9 +45,28 @@ export const api = {
     return true;
   },
 
-  async saveEmptyWorkflow(path, uuid) {
+  async move(srcPath, destFolder) {
+    const resp = await fetch(`${API_BASE}/move`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ src_path: srcPath, dest_folder: destFolder })
+    });
+    const data = await resp.json();
+    if (!resp.ok) throw new Error(data.error || "Failed to move");
+    return true;
+  },
+
+  async listFolders() {
+    const resp = await fetch(`${API_BASE}/folders`);
+    const data = await resp.json();
+    if (!resp.ok) throw new Error(data.error || "Failed to list folders");
+    return data.folders;
+  },
+
+  async saveEmptyWorkflow(path, uuid, fileName = 'workflow.json') {
     const tmpPath = path.replaceAll('\/', '%2F');
-    const resp = await fetch(`/api/userdata/workflows%2F${tmpPath}%2Fworkflow.json?overwrite=false&full_info=true`, {
+    const encodedFileName = fileName.replaceAll('\/', '%2F');
+    const resp = await fetch(`/api/userdata/workflows%2F${tmpPath}%2F${encodedFileName}?overwrite=false&full_info=true`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({

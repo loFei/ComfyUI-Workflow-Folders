@@ -86,6 +86,67 @@ export class Modal {
         });
     }
 
+    async selectFolder(title, folders, excludePath) {
+        return new Promise((resolve) => {
+            this.onCancel = () => resolve(null);
+
+            const buildTree = (items, depth = 0) => {
+                let html = '';
+                for (const item of items) {
+                    const isExcluded = excludePath && (item.path === excludePath || item.path.startsWith(excludePath + '/'));
+                    if (isExcluded) continue;
+                    const indent = depth * 20;
+                    html += `<div class="wf-folder-item" data-path="${item.path}" style="padding-left:${indent + 12}px">
+                        <span class="wf-folder-icon">📁</span> ${item.name}
+                    </div>`;
+                    if (item.children && item.children.length > 0) {
+                        html += buildTree(item.children, depth + 1);
+                    }
+                }
+                return html;
+            };
+
+            const rootLabel = getText('root_folder');
+            const treeHtml = buildTree(folders);
+
+            this.box.innerHTML = `
+                <h3>${title}</h3>
+                <div class="wf-folder-tree">
+                    <div class="wf-folder-item wf-folder-selected" data-path="" style="padding-left:12px">
+                        <span class="wf-folder-icon">📂</span> ${rootLabel}
+                    </div>
+                    ${treeHtml}
+                </div>
+                <div style="text-align:right;">
+                    <button class="wf-btn wf-btn-cancel" id="wf-btn-cancel">${getText('cancel')}</button>
+                    <button class="wf-btn wf-btn-confirm" id="wf-btn-confirm">${getText('move')}</button>
+                </div>
+            `;
+
+            this.overlay.style.display = 'flex';
+
+            let selectedPath = '';
+            const items = this.box.querySelectorAll('.wf-folder-item');
+            items.forEach(item => {
+                item.onclick = () => {
+                    items.forEach(i => i.classList.remove('wf-folder-selected'));
+                    item.classList.add('wf-folder-selected');
+                    selectedPath = item.dataset.path;
+                };
+            });
+
+            this.box.querySelector('#wf-btn-cancel').onclick = () => {
+                this.hide();
+                resolve(null);
+            };
+
+            this.box.querySelector('#wf-btn-confirm').onclick = () => {
+                this.hide();
+                resolve(selectedPath);
+            };
+        });
+    }
+
     hide() {
         this.overlay.style.display = 'none';
         this.box.innerHTML = '';

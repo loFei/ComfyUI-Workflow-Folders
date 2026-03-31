@@ -151,3 +151,49 @@
   background: #d9534f;
   color: #fff;
 }
+
+/* Drag & Drop */
+.wf-dragging {
+  opacity: 0.4;
+}
+
+.wf-drag-over {
+  background: var(--selected-bg, #236699) !important;
+  border-radius: 4px;
+  outline: 2px dashed var(--fg-color, #eee);
+  outline-offset: -2px;
+}
+
+/* Folder Picker */
+.wf-folder-tree {
+  max-height: 300px;
+  overflow-y: auto;
+  border: 1px solid var(--border-color, #444);
+  border-radius: 4px;
+  margin: 12px 0;
+  background: var(--bg-color, #1a1a1a);
+}
+
+.wf-folder-item {
+  padding: 8px 12px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: background 0.15s;
+  color: var(--p-tree-node-color, var(--fg-color, #eee));
+  font-size: 13px;
+}
+
+.wf-folder-item:hover {
+  background: var(--comfy-input-bg, #3a3a3a);
+}
+
+.wf-folder-item.wf-folder-selected {
+  background: var(--selected-bg, #236699);
+  color: #fff;
+}
+
+.wf-folder-icon {
+  flex-shrink: 0;
+}
