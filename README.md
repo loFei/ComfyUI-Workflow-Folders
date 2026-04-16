@@ -27,7 +27,7 @@
 
 ### 🙏特别感谢
 
-    特别感谢 ArboRithmDev 提交拖放功能
+    特别感谢 [ArboRithmDev](https://github.com/ArboRithmDev) 提交拖放功能
 
 ### 安装方式
 
@@ -56,7 +56,7 @@
 
 ### 🙏Special Thanks
 
-    Special thanks to ArboRithmDev for drag & drop feature
+    Special thanks to [ArboRithmDev](https://github.com/ArboRithmDev) for drag & drop feature
 
 ### Installation
 
