@@ -65,20 +65,28 @@ export class ContextMenu {
     }
 
     getActions(node) {
-        const common = [
-            { type: 'new_folder', label: `📁 ${getText('new_folder')}` },
-            { type: 'rename', label: `✏️ ${getText('rename')}` },
-            { type: 'copy', label: `📋 ${getText('copy')}` },
-            { type: 'delete', label: `🗑️ ${getText('delete')}`, danger: true }
-        ];
-
         if (node == undefined) {
-            return [common[0]];
+            return [
+                { type: 'new_folder', label: `📁 ${getText('new_folder')}` },
+            ];
         }
 
         if (node.type === 'file') {
-            return common;
+            return [
+                { type: 'move_to', label: `📦 ${getText('move_to')}` },
+                { type: 'rename', label: `✏️ ${getText('rename')}` },
+                { type: 'copy', label: `📋 ${getText('copy')}` },
+                { type: 'delete', label: `🗑️ ${getText('delete')}`, danger: true },
+            ];
         }
-        return common;
+
+        return [
+            { type: 'new_folder', label: `📁 ${getText('new_folder')}` },
+            { type: 'new_workflow', label: `📄 ${getText('new_workflow')}` },
+            { type: 'move_to', label: `📦 ${getText('move_to')}` },
+            { type: 'rename', label: `✏️ ${getText('rename')}` },
+            { type: 'copy', label: `📋 ${getText('copy')}` },
+            { type: 'delete', label: `🗑️ ${getText('delete')}`, danger: true },
+        ];
     }
 }
