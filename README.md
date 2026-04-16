@@ -25,6 +25,10 @@
 
     ⚠️ 重要提示：本项目仅针对目录结构进行操作，未覆盖原生的工作流文件右键菜单
 
+### 🙏特别感谢
+
+    特别感谢 ArboRithmDev 提交拖放功能
+
 ### 安装方式
 
     cd ComfyUI/custom_nodes
@@ -43,9 +47,16 @@
         Delete
         Rename
         Copy
+    🖱️ Drag workflow to folder icon for quick sorting
+    📥 Drag workflow to arrow icon to move existing workflow into a folder
+    ➕ Drag workflow to plus icon to copy and create a new workflow in the folder
 
 ### ⚠️Usage Notes
     ⚠️ Important Notice: This project operates solely on the directory structure and does not override the native workflow file context menu.
+
+### 🙏Special Thanks
+
+    Special thanks to ArboRithmDev for drag & drop feature
 
 ### Installation
 

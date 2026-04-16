@@ -2,7 +2,7 @@
 [project]
 name = "comfyui-workflow-folders"
 description = "ComfyUI Workflow Folders is designed to enhance the native ComfyUI workflow panel by providing directory management and context menus, enabling quick workflow classification within ComfyUI."
-version = "1.1.2"
+version = "1.1.3"
 license = { file = "LICENSE" }
 dependencies  = []
 
