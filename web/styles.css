@@ -10,7 +10,7 @@
 }
 
 .wf-context-menu {
-  position: absolute;
+  position: fixed;
   background: var(--comfy-menu-bg, #2b2b2b);
   color: var(--fg-color, #eee);
   border: 1px solid var(--border-color, #444);
