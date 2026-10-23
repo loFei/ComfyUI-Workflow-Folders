@@ -32,9 +32,24 @@ export class ContextMenu {
             this.menu.appendChild(item);
         });
 
-        this.menu.style.left = `${e.pageX}px`;
-        this.menu.style.top = `${e.pageY}px`;
+        this.menu.style.left = `${e.clientX}px`;
+        this.menu.style.top = `${e.clientY}px`;
         this.menu.style.display = 'block';
+
+        // Clamp so the menu never overflows the viewport (bottom/right edges)
+        const mw = this.menu.offsetWidth;
+        const mh = this.menu.offsetHeight;
+        const pad = 8;
+        let left = e.clientX;
+        let top = e.clientY;
+        if (left + mw > window.innerWidth - pad) {
+            left = Math.max(pad, left - mw);
+        }
+        if (top + mh > window.innerHeight - pad) {
+            top = Math.max(pad, top - mh);
+        }
+        this.menu.style.left = `${left}px`;
+        this.menu.style.top = `${top}px`;
 
         if (!this.overlay) {
             this.overlay = document.createElement('div');
