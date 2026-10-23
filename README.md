@@ -28,7 +28,8 @@
 ### 🙏特别感谢
 
     特别感谢 [ArboRithmDev](https://github.com/ArboRithmDev) 提交拖放功能
-
+    特别感谢 [StarSkyZheng](https://github.com/starskyzheng) 修复菜单溢出视口bug
+    
 ### 安装方式
 
     cd ComfyUI/custom_nodes
@@ -57,6 +58,7 @@
 ### 🙏Special Thanks
 
     Special thanks to [ArboRithmDev](https://github.com/ArboRithmDev) for drag & drop feature
+    Special thanks to [StarSkyZheng](https://github.com/starskyzheng) for clamp context menu to viewport
 
 ### Installation
 
